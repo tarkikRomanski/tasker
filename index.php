@@ -24,8 +24,8 @@
         <div class="col-sm-12">
             <h1 class="text-warning text-xs-center m-b-3">Tasker</h1>
         </div>
-        <div class="col-sm-4 p-t-2 p-b-2 bg-primary">
-            <div class="row">
+        <div class="col-sm-4">
+            <div class="row bg-primary p-t-2 p-b-2">
                 <div class="col-sm-12">
                     <h2 class="text-xs-center">Добавить задание:</h2>
                 </div>
@@ -34,6 +34,11 @@
                 </div>
                 <div class="col-sm-12">
                     <button id="addNewTask" class="btn btn-success btn-block m-t-1">Добавить</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-warning btn-block m-t-1" id="voiceAllTasks">Озвучить все таски</button>
                 </div>
             </div>
         </div>
@@ -70,6 +75,19 @@
 	    );
 	};
 
+
+
+    $('#voiceAllTasks').click(function(){
+        var allTaskString = "";
+        var n = 1;
+        $('.task-text').each(function ()
+        {
+            allTaskString += '!!' + n + '. ' + $(this).html();
+            n++;
+        });
+        speak(allTaskString);
+    });
+
     var showAllTask = function () {
         $.get(
             './controller/TaskController.php',
@@ -87,6 +105,7 @@
                             id:id
                         },
                         function () {
+                            speak('Поздравляю! Таск выполнено');
                             showAllTask();
                         }
                     );
@@ -100,6 +119,7 @@
                             id:id
                         },
                         function () {
+                            speak('Таск возобвленно');
                             showAllTask();
                         }
                     );
