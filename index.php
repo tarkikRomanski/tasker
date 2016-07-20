@@ -54,7 +54,21 @@
     </div>
 </div>
 
+<div id="response"></div>
+
 <script>
+
+	var speak = function(text){
+	 	$.get(
+	        'controller/SpeakerController.php',
+	        {
+	          text:text
+	        },
+	        function(data){
+	          $('#response').html(data);
+	        }
+	    );
+	};
 
     var showAllTask = function () {
         $.get(
@@ -135,6 +149,7 @@
     };
 
     showAllTask();
+    speak('Привет, Роман')
 
     $('#addNewTask').click(function () {
         $.get(
@@ -143,8 +158,8 @@
                 status:'newTask',
                 text:$('#newTask').val()
             },
-            function (data) {
-                alert('Таск добавлен');
+            function () {
+                speak('Таск добавлен');
                 showAllTask();
             }
         );
