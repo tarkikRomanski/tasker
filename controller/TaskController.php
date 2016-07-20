@@ -12,7 +12,7 @@ $model = new Task();
             $tasks = $model->getAllTask();
             foreach ($tasks as $task):?>
                 <tr>
-                    <td style="<?= ($task['status']==0)?'text-decoration:line-through':'' ?>"><?=$task['text']?></td>
+                    <td class="task-text" style="<?= ($task['status']==0)?'text-decoration:line-through':'' ?>"><?=$task['text']?></td>
                     <td class="row <?= ($task['status']==0)?'bg-danger':'bg-success';?> text-xs-center">
                         <i data-task="<?=$task['id']?>" class="col-sm-6 material-icons done" style="<?= ($task['status']==0)?'opacity:0':'' ?>">&#xE876;</i>
                         <i data-task="<?=$task['id']?>" class="col-sm-6 material-icons revive" style="<?= ($task['status']==1)?'opacity:0':'' ?>">&#xE8BA;</i>
@@ -24,7 +24,7 @@ $model = new Task();
             $tasks = $model->getTodayTasks();
             foreach ($tasks as $task):?>
                 <tr>
-                    <td style="<?= ($task['status']==0)?'text-decoration:line-through':'' ?>"><?=$task['text']?></td>
+                    <td class="task-text" style="<?= ($task['status']==0)?'text-decoration:line-through':'' ?>"><?=$task['text']?></td>
                     <td class="row <?= ($task['status']==0)?'bg-danger':'bg-success';?> text-xs-center">
                         <i data-task="<?=$task['id']?>" class="col-sm-6 material-icons done" style="<?= ($task['status']==0)?'opacity:0':'' ?>">&#xE876;</i>
                         <i data-task="<?=$task['id']?>" class="col-sm-6 material-icons revive" style="<?= ($task['status']==1)?'opacity:0':'' ?>">&#xE8BA;</i>
