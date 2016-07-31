@@ -1,28 +1,13 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-class Task
+require_once 'model.php';
+class Task extends Model
 {
-    protected $pdo;
-    public function __construct()
+    public function newTask($text, $owner)
     {
-        $host = 'localhost';
-        $user = 'root';
-        $pass = '';
-        $db = 'tasks';
-
-        $dsn = "mysql:host=$host;dbname=$db;";
-        $opt = array(
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        );
-        $this->pdo = new PDO($dsn, $user, $pass, $opt);
-    }
-
-    public function newTask($text)
-    {
-        $query = "INSERT INTO tasks (text, status) VALUES (?, 1)";
+        $query = "INSERT INTO tasks (text, status, owner) VALUES (?, 1, ?)";
         $result = $this->pdo->prepare($query);
-        $result->execute([$text]);
+        $result->execute([$text, $owner]);
     }
 
     public function closeTask($id)
@@ -39,9 +24,9 @@ class Task
         $result->execute([$id]);
     }
 
-    public function getAllTask()
+    public function getAllTask($owner)
     {
-        $query = "SELECT * FROM tasks";
+        $query = "SELECT * FROM tasks WHERE owner=$owner";
         $stmt = $this->pdo->query($query);
         $i = 0;
         while ($row = $stmt->fetch())
@@ -65,10 +50,10 @@ class Task
         return $resRow;
     }
 
-    public function getTodayTasks()
+    public function getTodayTasks($owner)
     {
         $today = date('Y-m-d');
-        $query = "SELECT * FROM tasks WHERE `date` LIKE '%". $today . "%' OR `status` = 1";
+        $query = "SELECT * FROM tasks WHERE (`date` LIKE '%". $today . "%' OR `status` = 1) AND owner=$owner";
         $stmt = $this->pdo->query($query);
         $i = 0;
         while ($row = $stmt->fetch())

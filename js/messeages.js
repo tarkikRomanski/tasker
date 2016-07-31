@@ -1,0 +1,9 @@
+const LIM40 = 'Значение поля не должно перевышать 40 символов!';
+const CONFIRM = 'Пароли совпадают';
+const NOCONFIRM = 'Пароли не совпадают';
+const USER_ADDING = 'Пользователь создан';
+const USER_ERR_1 = 'Пользователь существует!';
+const USER_ERR_2 = 'Пользователя не существует';
+const USER_ERR_3 = 'Неверный пароль';
+const EMPTY_FIELD = 'Пустое поле!';
+const ERR_FIELD = 'Проверте все поля';
