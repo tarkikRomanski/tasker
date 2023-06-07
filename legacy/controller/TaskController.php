@@ -1,4 +1,7 @@
 <?php
+
+use models\Task;
+
 require_once '../models/task.php';
 $model = new Task();
 ?>

@@ -1,0 +1,16 @@
+{
+  "name": "tarkik/tasker",
+  "description": "Slim task manager.",
+  "keywords": ["tasks", "php"],
+  "license": "MIT",
+  "type": "project",
+  "require": {
+    "php": ">=8.2.6",
+    "slim/psr7": "^1.6",
+    "slim/slim": ">=4.10.0"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
+  }
+}

@@ -1,8 +1,12 @@
 <?php
+
+namespace models;
 header('Content-Type: text/html; charset=utf-8');
+
 class Task
 {
     protected $pdo;
+
     public function __construct()
     {
         $host = 'localhost';
@@ -44,8 +48,7 @@ class Task
         $query = "SELECT * FROM tasks";
         $stmt = $this->pdo->query($query);
         $i = 0;
-        while ($row = $stmt->fetch())
-        {
+        while ($row = $stmt->fetch()) {
             $resRow[$i] = $row;
             $i++;
         }
@@ -57,8 +60,7 @@ class Task
         $query = "SELECT * FROM tasks WHERE status = 1";
         $stmt = $this->pdo->query($query);
         $i = 0;
-        while ($row = $stmt->fetch())
-        {
+        while ($row = $stmt->fetch()) {
             $resRow[$i] = $row;
             $i++;
         }
@@ -68,11 +70,10 @@ class Task
     public function getTodayTasks()
     {
         $today = date('Y-m-d');
-        $query = "SELECT * FROM tasks WHERE `date` LIKE '%". $today . "%' OR `status` = 1";
+        $query = "SELECT * FROM tasks WHERE `date` LIKE '%" . $today . "%' OR `status` = 1";
         $stmt = $this->pdo->query($query);
         $i = 0;
-        while ($row = $stmt->fetch())
-        {
+        while ($row = $stmt->fetch()) {
             $resRow[$i] = $row;
             $i++;
         }
